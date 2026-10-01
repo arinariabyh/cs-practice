@@ -1,1 +1,1 @@
-p = int(input())
+porog = int(input())
