@@ -8,4 +8,11 @@ def average(scores):
     if len(scores) == 0:
         return 0.0
     return round(sum(scores) / len(scores), 2)
-print(average([]))
+
+def ranking(names, scores):
+    d = {}
+    n = len(names)
+    for i in range(n):
+        new_names[names[i]] = [scores[i]]
+    new_names = dict(sorted(new_names.items(), key=lambda item: item[1]))
+    return list(new_names.keys())
