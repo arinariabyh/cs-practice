@@ -1,0 +1,23 @@
+def winner(names, scores):
+    best_id = 0
+    for i in range(1, len(scores)):
+        if scores[i] > scores[best_id]:
+            best_id += i
+    return names[best_id]
+
+def average(scores):
+    if len(scores) == 0:
+        return 0.0
+    return round(sum(scores) / len(scores), 2)
+
+def ranking(names, scores):
+    d = {}
+    n = len(names)
+    for i in range(n):
+        d[names[i]] = scores[i]
+    d = dict(sorted(d.items(), key=lambda item: item[1], reverse = True))
+    return list(d.keys())
+
+def above_average(names, scores):
+    avg = average(scores)
+    return [names[i] for i in range(len(names)) if scores[i] > avg]
