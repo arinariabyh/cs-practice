@@ -2,7 +2,7 @@ def winner(names, scores):
     best_id = 0
     for i in range(1, len(scores)):
         if scores[i] > scores[best_id]:
-            best_id += i
+            best_id = i
     return names[best_id]
 
 def average(scores):
