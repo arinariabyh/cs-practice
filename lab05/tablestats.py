@@ -19,11 +19,29 @@ def read_rows(lines):
 def count_types(rows):
     counts = {}
     for row in rows:
-        type = row.get('тип')
-        if type == None:
+        kind = row.get('тип')
+        if kind == None:
             continue
-        if type in counts:
-            counts[type] += 1
+        if kind in counts:
+            counts[kind] += 1
         else:
-            counts[type] = 1
+            counts[kind] = 1
     return counts
+
+def total_minutes(rows, kind):
+    total = 0.0
+    for row in rows:
+        if row.get('тип') != kind:
+            continue
+        value = row.get('минуты').replace(',','.')
+        try:
+            total += float(value)
+        except ValueError:
+            continue
+    return round(total, 1)
+
+def to_cvs(counts):
+    result = 'тип, количество\n'
+    for kind in sorted(counts):
+        result += f'{kind}, {counts{kind}}\n'
+    return result
