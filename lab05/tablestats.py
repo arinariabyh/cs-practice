@@ -1,13 +1,14 @@
 def read_rows(lines):
     rows = []
-    header = ''
+    header = []
     for line in lines:
         line = line.strip()
-        line2 = [x.strip() for x in line.split(',')]
-        if len(line) == 0:
+        if not line:
             continue
-        if header == '':
+        line2 = [x.strip() for x in line.split(',')]
+        if not header:
             header = line2
+            continue
         if len(line2) != len(header):
             continue
         row = {}
@@ -20,7 +21,7 @@ def count_types(rows):
     counts = {}
     for row in rows:
         kind = row.get('тип')
-        if kind == None:
+        if kind is None:
             continue
         if kind in counts:
             counts[kind] += 1
@@ -33,15 +34,15 @@ def total_minutes(rows, kind):
     for row in rows:
         if row.get('тип') != kind:
             continue
-        value = row.get('минуты').replace(',','.')
+        value = row.get('минуты', '').replace(',','.')
         try:
             total += float(value)
         except ValueError:
             continue
     return round(total, 1)
 
-def to_cvs(counts):
+def to_csv(counts):
     result = 'тип, количество\n'
     for kind in sorted(counts):
-        result += f'{kind}, {counts{kind}}\n'
+        result += f'{kind},{counts[kind]}\n'
     return result
