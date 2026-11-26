@@ -1,6 +1,6 @@
 import numpy as np
 def make_table(rows, columns):
-    return np.arrange(rows * columns).reshape(rows, columns).tolist()
+    return np.arange(rows * columns).reshape(rows, columns).tolist()
 
 def rectangle(matrix, row_start, row_stop, column_start, column_stop):
     a = np.array(matrix)
