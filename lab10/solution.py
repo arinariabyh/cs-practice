@@ -1,3 +1,4 @@
+import numpy as np
 def make_table(rows, columns):
     return np.arrange(rows * columns).reshape(rows, columns).tolist()
 
